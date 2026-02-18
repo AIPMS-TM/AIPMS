@@ -19,24 +19,9 @@ const content = {
   }
 };
 
-
 // =======================
 // Funzione per cambiare lingua
 // =======================
-//function setLang(lang) {
-  //document.getElementById("history").textContent = content[lang].history;
-  //document.getElementById("message").textContent = content[lang].message;
-
-  // Aggiorna lo stato dei bottoni
- // document.querySelectorAll('.lang button').forEach(btn => btn.classList.remove('active'));
- // document.querySelector(`.lang button[onclick="setLang('${lang}')"]`).classList.add('active');
-//}
-
-// =======================
-// Imposta lingua di default all'apertura
-// =======================
-//setLang("en");
-
 function setLang(lang) {
   // Aggiorna testo
   document.getElementById("history").textContent = content[lang].history;
@@ -44,18 +29,22 @@ function setLang(lang) {
 
   // Aggiorna link alla nuova pagina
   document.getElementById("lab-link").innerHTML = content[lang].labLink;
-  
-  // Aggiorna stato bottoni usando data-lang
+
+  // Aggiorna bottoni lingua
   document.querySelectorAll('.lang button').forEach(btn => {
     btn.classList.remove('active');
     if (btn.dataset.lang === lang) btn.classList.add('active');
   });
 }
 
+// =======================
 // Lingua di default
+// =======================
 setLang("en");
 
-// Aggiungi listener ai bottoni
+// =======================
+// Listener per click sui bottoni lingua
+// =======================
 document.querySelectorAll('.lang button').forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.dataset.lang));
 });
