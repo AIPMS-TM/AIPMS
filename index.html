@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIPMS™</title>
+
+  <!-- Font personalizzato da Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+      color: #333;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      padding: 20px;
+    }
+    img.logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .lang {
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+    .lang button {
+      background: none;
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 5px 10px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .lang button.active {
+      background: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="logo.png" alt="AIPMS™ Logo" class="logo">
+
+    <!-- Titolo e messaggio -->
+    <h1>AIPMS™</h1>
+    <p id="message">Il nostro sito è in costruzione. Torna presto a scoprirlo!</p>
+
+    <!-- Selettore lingua -->
+    <div class="lang">
+      <button class="active" onclick="setLang('it')">IT</button>
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('de')">DE</button>
+    </div>
+  </div>
+
+  <script>
+    const messages = {
+      it: "Il nostro sito è in costruzione. Torna presto a scoprirlo!",
+      en: "Our website is under construction. Check back soon!",
+      de: "Unsere Website befindet sich im Aufbau. Schauen Sie bald wieder vorbei!"
+    };
+
+    function setLang(lang) {
+      document.getElementById('message').textContent = messages[lang];
+      document.querySelectorAll('.lang button').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.lang button[onclick="setLang('${lang}')"]`).classList.add('active');
+    }
+  </script>
+</body>
+</html>
