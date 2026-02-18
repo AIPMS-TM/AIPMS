@@ -1,8 +1,7 @@
 /* ======================= */
-/* Reset base e box-sizing */
-/* ======================= */
+/* Reset base */
 * {
-  margin: 1;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -15,24 +14,23 @@ html, body {
 }
 
 /* ======================= */
-/* Centrare tutto il contenuto */
-/* ======================= */
+/* Centrare tutto */
 body {
   display: flex;
   justify-content: center; /* centro orizzontale */
   align-items: center;     /* centro verticale */
   text-align: center;
-  padding: 20px;           /* margine interno su mobile */
+  padding: 20px;
 }
 
-/* Contenitore principale */
 .container {
   display: flex;
-  flex-direction: column;   /* verticale */
-  justify-content: center;  /* centro verticale */
-  align-items: center;      /* centro orizzontale */
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente */
+  align-items: center;     /* centra orizzontalmente */
   width: 100%;
-  max-width: 600px;         /* limite su desktop */
+  max-width: 600px;
+  min-height: 100vh;       /* occupa tutta l’altezza finestra */
   padding: 20px;
 }
 
@@ -40,18 +38,18 @@ body {
 /* Logo */
 img.logo {
   width: 150px;
-  max-width: 40%;      /* ridimensionabile su mobile */
+  max-width: 40%; /* ridimensiona su mobile */
   height: auto;
   margin-bottom: 20px;
 }
 
 /* Titolo */
 h1 {
-  font-size: clamp(2rem, 5vw, 2.8rem); /* cresce con lo schermo */
+  font-size: clamp(2rem, 5vw, 2.8rem); /* cresce con schermo */
   margin-bottom: 10px;
 }
 
-/* Storia e messaggio */
+/* Storia e messaggi */
 #history, #message {
   font-size: clamp(1rem, 4vw, 1.2rem);
   line-height: 1.5;
