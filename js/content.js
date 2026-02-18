@@ -46,7 +46,7 @@ function setLang(lang) {
 }
 
 // Lingua di default
-setLang("it");
+setLang("en");
 
 // Aggiungi listener ai bottoni
 document.querySelectorAll('.lang button').forEach(btn => {
