@@ -77,6 +77,11 @@ h1 {
   background: #333;
   color: #fff;
 }
+/* Spazio extra dopo i bottoni lingua */
+.lang + p {
+  margin-top: 25px; /* aumenta lo spazio tra bottoni e link */
+  font-size: 1.1rem; /* opzionale: testo un po' più grande */
+}
 
 /* ======================= */
 /* Responsive mobile */
