@@ -42,6 +42,9 @@ function setLang(lang) {
   document.getElementById("history").textContent = content[lang].history;
   document.getElementById("message").textContent = content[lang].message;
 
+  // Aggiorna link alla nuova pagina
+  document.getElementById("lab-link").innerHTML = content[lang].labLink;
+  
   // Aggiorna stato bottoni usando data-lang
   document.querySelectorAll('.lang button').forEach(btn => {
     btn.classList.remove('active');
