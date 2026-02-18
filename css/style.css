@@ -1,7 +1,74 @@
+/* Reset base e box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  color: #333;
+}
+
+/* Centrare tutto */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px; /* margine interno per non toccare i bordi */
+}
+
+/* Contenitore centrale */
+.container {
+  width: 100%;       /* prende tutto lo spazio disponibile su mobile */
+  max-width: 600px;  /* massimo su desktop */
+  padding: 20px;
+  margin: 0 auto;    /* centrato orizzontalmente */
+}
+
+/* Logo */
 img.logo {
-  width: 150px;
-  margin-bottom: 20px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 40%;        /* ridimensiona su mobile */
+  max-width: 150px;  /* mai troppo grande su desktop */
+  height: auto;
+  margin: 0 auto 20px auto; /* centrato e spazio sotto */
+}
+
+/* Titolo */
+h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem); /* cresce con schermo */
+  margin-bottom: 0.5rem;
+}
+
+/* Paragrafi storia e messaggio */
+#history, #message {
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* Selettore lingua */
+.lang {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.lang button {
+  background: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px 12px; /* più grande per touch */
+  margin: 0 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.lang button.active {
+  background: #333;
+  color: #fff;
 }
