@@ -19,26 +19,22 @@
     <!-- Titolo -->
     <h1>AIPMS™</h1>
 
-    <!-- Storia e messaggi -->
+    <!-- Storia e messaggio -->
     <p id="history"></p>
     <p id="message"></p>
 
     <!-- Selettore lingua -->
     <div class="lang">
-      <!-- Link alla nuova pagina AIPMS Lab -->
-      <!-- Link alla nuova pagina -->
-<p id="lab-link"></p>
- <!--<p><a href="lab.html">Vai a AIPMS Lab</a></p> -->
-      <button class="active" onclick="setLang('it')">IT</button>
-      <button onclick="setLang('en')">EN</button>
-      <button onclick="setLang('de')">DE</button>
+      <button class="active" data-lang="it">IT</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="de">DE</button>
     </div>
+
+    <!-- Link dinamico alla nuova pagina AIPMS Lab -->
+    <p id="lab-link"></p>
   </div>
 
   <!-- Script JS -->
   <script src="js/content.js" defer></script>
 </body>
 </html>
-
-
-
