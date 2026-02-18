@@ -19,16 +19,36 @@ const content = {
 // =======================
 // Funzione per cambiare lingua
 // =======================
-function setLang(lang) {
-  document.getElementById("history").textContent = content[lang].history;
-  document.getElementById("message").textContent = content[lang].message;
+//function setLang(lang) {
+  //document.getElementById("history").textContent = content[lang].history;
+  //document.getElementById("message").textContent = content[lang].message;
 
   // Aggiorna lo stato dei bottoni
-  document.querySelectorAll('.lang button').forEach(btn => btn.classList.remove('active'));
-  document.querySelector(`.lang button[onclick="setLang('${lang}')"]`).classList.add('active');
-}
+ // document.querySelectorAll('.lang button').forEach(btn => btn.classList.remove('active'));
+ // document.querySelector(`.lang button[onclick="setLang('${lang}')"]`).classList.add('active');
+//}
 
 // =======================
 // Imposta lingua di default all'apertura
 // =======================
-setLang("en");
+//setLang("en");
+
+function setLang(lang) {
+  // Aggiorna testo
+  document.getElementById("history").textContent = content[lang].history;
+  document.getElementById("message").textContent = content[lang].message;
+
+  // Aggiorna stato bottoni usando data-lang
+  document.querySelectorAll('.lang button').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.lang === lang) btn.classList.add('active');
+  });
+}
+
+// Lingua di default
+setLang("it");
+
+// Aggiungi listener ai bottoni
+document.querySelectorAll('.lang button').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
