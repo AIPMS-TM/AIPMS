@@ -83,6 +83,11 @@ h1 {
   font-size: 1.1rem; /* opzionale: testo un po' più grande */
 }
 
+/* ===== Spazio tra bottoni e link AIPMS Lab ===== */
+.lang + #lab-link {
+  margin-top: 25px;
+  font-size: 1.1rem;
+}
 /* ======================= */
 /* Responsive mobile */
 @media (max-width: 480px) {
