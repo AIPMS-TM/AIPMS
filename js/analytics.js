@@ -38,6 +38,17 @@ document.addEventListener("click", function(e) {
   }
 });
 
+// Traccia click sui pulsanti lingua
+document.addEventListener("click", function(e) {
+  if (e.target.closest(".track-lang")) {
+    gtag('event', 'click_lingua', {
+      event_category: 'engagement',
+      event_label: e.target.dataset.lang
+    });
+  }
+});
+
+
 // 3️⃣ Traccia scroll al 50%
 let scrollTracked = false;
 
