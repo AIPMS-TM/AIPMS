@@ -1,14 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>AIPMS Lab</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIPMS™ Lab</title>
 
-    <!-- Analytics JS -->
-    <script src="analytics.js"></script>
+  <!-- Google Analytics per lab.html -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYYYYYYYYY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KYE302LRPP');
+  </script>
+
+ <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Welcome to AIPMS™ Lab</h1>
-    <a href="contacts.html" class="track-contact">Contacts</a>
+  <div class="container">
+    <!-- Titolo -->
+    <h1 id="lab-title"></h1>
+
+    <!-- Form di contatto -->
+    <form id="contact-form">
+      <label for="name" id="label-name"></label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email" id="label-email"></label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message" id="label-message"></label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit" id="btn-submit"></button>
+    </form>
+
+    <!-- Selettore lingua -->
+    <div class="lang">
+      <button class="active" data-lang="it">IT</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="de">DE</button>
+    </div>
+  </div>
+
+  <!-- JS per multilingua e GA form -->
+  <script>
+    // Contenuti multilingua per Lab
+    const labContent = {
+      it: {
+        title: "AIPMS Lab",
+        labelName: "Nome:",
+        labelEmail: "Email:",
+        labelMessage: "Messaggio:",
+        btnSubmit: "Invia",
+        alertMsg: "Grazie! Il form è stato inviato."
+      },
+      en: {
+        title: "AIPMS Lab",
+        labelName: "Name:",
+        labelEmail: "Email:",
+        labelMessage: "Message:",
+        btnSubmit: "Send",
+        alertMsg: "Thank you! The form has been submitted."
+      },
+      de: {
+        title: "AIPMS Lab",
+        labelName: "Name:",
+        labelEmail: "Email:",
+        labelMessage: "Nachricht:",
+        btnSubmit: "Senden",
+        alertMsg: "Danke! Das Formular wurde gesendet."
+      }
+    };
+
+    // Lingua corrente
+    let currentLang = "it";
+
+    // Funzione per cambiare lingua
+    function setLang(lang){
+      currentLang = lang; // aggiorna lingua corrente
+      document.getElementById("lab-title").textContent = labContent[lang].title;
+      document.getElementById("label-name").textContent = labContent[lang].labelName;
+      document.getElementById("label-email").textContent = labContent[lang].labelEmail;
+      document.getElementById("label-message").textContent = labContent[lang].labelMessage;
+      document.getElementById("btn-submit").textContent = labContent[lang].btnSubmit;
+
+      // Aggiorna bottoni lingua
+      document.querySelectorAll('.lang button').forEach(btn => {
+        btn.classList.remove('active');
+        if(btn.dataset.lang === lang) btn.classList.add('active');
+      });
+    }
+
+    // Lingua di default
+    setLang("it");
+
+    // Listener bottoni lingua
+    document.querySelectorAll('.lang button').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    // Form submit con tracciamento GA
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(e){
+      e.preventDefault(); // blocco invio reale per test
+
+      // Evento GA
+      gtag('event', 'submit_form', {
+        event_category: 'form',
+        event_label: 'lab_contact'
+      });
+
+      // Alert dinamico in base alla lingua
+      alert(labContent[currentLang].alertMsg);
+
+      form.reset();
+    });
+  </script>
 </body>
 </html>
