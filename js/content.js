@@ -3,16 +3,19 @@
 // =======================
 const content = {
   it: {
-    history: "Fondata nel 2016, AIPMS nasce per unire innovazione e progresso, promuovendo una visione futura in cui l’Intelligenza Artificiale opera come alleata dell’umanità, a servizio dello sviluppo, della conoscenza e del progresso collettivo.",
-    message: "Il nostro sito è in costruzione. Torna presto a scoprirlo!"
+    history: "Fondata nel 2018, AIPMS nasce per unire innovazione e progresso, promuovendo una visione futura in cui l’Intelligenza Artificiale opera come alleata dell’umanità, a servizio dello sviluppo, della conoscenza e del progresso collettivo.",
+    message: "Il nostro sito è in costruzione. Torna presto a scoprirlo!",
+    labLinkText: "Vai a AIPMS Lab"
   },
   en: {
-    history: "Founded in 2016, AIPMS was created to unite innovation and progress, promoting a future vision where Artificial Intelligence operates as humanity’s ally, serving development, knowledge, and collective progress.",
-    message: "Our website is under construction. Check back soon!"
+    history: "Founded in 2018, AIPMS was created to unite innovation and progress, promoting a future vision where Artificial Intelligence operates as humanity’s ally, serving development, knowledge, and collective progress.",
+    message: "Our website is under construction. Check back soon!",
+    labLinkText: "Go to AIPMS Lab"
   },
   de: {
-    history: "Gegründet 2016, wurde AIPMS geschaffen, um Innovation und Fortschritt zu vereinen und eine Zukunftsvision zu fördern, in der Künstliche Intelligenz als Verbündete der Menschheit dient.",
-    message: "Unsere Website befindet sich im Aufbau. Schauen Sie bald wieder vorbei!"
+    history: "Gegründet 2018, wurde AIPMS geschaffen, um Innovation und Fortschritt zu vereinen und eine Zukunftsvision zu fördern, in der Künstliche Intelligenz als Verbündete der Menschheit dient.",
+    message: "Unsere Website befindet sich im Aufbau. Schauen Sie bald wieder vorbei!",
+    labLinkText: "Zum AIPMS Lab"
   }
 };
 
@@ -20,39 +23,25 @@ const content = {
 // Funzione per cambiare lingua
 // =======================
 function setLang(lang) {
-  // Aggiorna testo
+  // Aggiorna testi
   document.getElementById("history").textContent = content[lang].history;
   document.getElementById("message").textContent = content[lang].message;
 
-  // =======================
-  // Aggiorna link Lab dinamicamente
-  // =======================
+  // Aggiorna link Lab
   const labLinkEl = document.getElementById("lab-link");
-  labLinkEl.innerHTML = ""; // pulisci contenuto precedente
+  labLinkEl.innerHTML = ""; // pulisce link precedente
 
   const a = document.createElement("a");
+  a.href = "lab.html"; // sempre lo stesso file
+  a.textContent = content[lang].labLinkText;
 
-  // Imposta href e testo in base alla lingua
-  if (lang === "it") {
-    a.href = "lab.html";
-    a.textContent = "Vai a AIPMS™ Lab";
-  } else if (lang === "en") {
-    a.href = "lab-en.html";
-    a.textContent = "Go to AIPMS™ Lab";
-  } else {
-    a.href = "lab-de.html";
-    a.textContent = "Zum AIPMS™ Lab";
-  }
-
-  // Classe e data-lang per GA
+  // GA: aggiungi tracciamento senza rompere il link
   a.classList.add("track-lab");
   a.dataset.lang = lang;
 
   labLinkEl.appendChild(a);
 
-  // =======================
   // Aggiorna bottoni lingua
-  // =======================
   document.querySelectorAll('.lang button').forEach(btn => {
     btn.classList.remove('active');
     if (btn.dataset.lang === lang) btn.classList.add('active');
@@ -62,10 +51,10 @@ function setLang(lang) {
 // =======================
 // Lingua di default
 // =======================
-setLang("en");
+setLang("it");
 
 // =======================
-// Listener per click sui bottoni lingua
+// Listener per bottoni lingua
 // =======================
 document.querySelectorAll('.lang button').forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.dataset.lang));
