@@ -6,7 +6,7 @@
   <title>AIPMS™ Lab</title>
 
   <!-- Google Analytics per lab.html -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYYYYYYYYY"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KYE302LRPP"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -23,7 +23,8 @@
     <h1 id="lab-title"></h1>
 
     <!-- Form di contatto con Formspree -->
-    <form id="contact-form" action="https://formspree.io/f/mqeddaap">
+   <form id="contact-form" action="https://formspree.io/f/mqeddaap" method="POST">
+
       <label for="name" id="label-name"></label>
       <input type="text" id="name" name="name" required>
 
@@ -94,7 +95,7 @@
     }
 
     // Lingua di default
-    setLang("it");
+    setLang("en");
 
     // Listener bottoni lingua
     document.querySelectorAll('.lang button').forEach(btn => {
@@ -115,8 +116,17 @@
       // Alert dinamico in base alla lingua
       alert(labContent[currentLang].alertMsg);
 
-      // Invia realmente il form a Formspree
-      form.submit();
+      // Form submit con tracciamento GA e alert dinamico a formsfree 
+    form.addEventListener('submit', function(e){
+    e.preventDefault(); // blocco temporaneo per test, in produzione puoi rimuovere se vuoi
+    gtag('event', 'submit_form', {
+        event_category: 'form',
+        event_label: 'lab_contact'
+    });
+    alert(labContent[currentLang].alertMsg);
+    form.submit();  // invio reale a Formspree
+});
+     
     });
   </script>
 </body>
