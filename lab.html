@@ -14,7 +14,7 @@
     gtag('config', 'G-KYE302LRPP');
   </script>
 
- <!-- CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,8 +22,8 @@
     <!-- Titolo -->
     <h1 id="lab-title"></h1>
 
-    <!-- Form di contatto -->
-    <form id="contact-form">
+    <!-- Form di contatto con Formspree -->
+    <form id="contact-form" action="https://formspree.io/f/mqeddaap">
       <label for="name" id="label-name"></label>
       <input type="text" id="name" name="name" required>
 
@@ -79,7 +79,7 @@
 
     // Funzione per cambiare lingua
     function setLang(lang){
-      currentLang = lang; // aggiorna lingua corrente
+      currentLang = lang;
       document.getElementById("lab-title").textContent = labContent[lang].title;
       document.getElementById("label-name").textContent = labContent[lang].labelName;
       document.getElementById("label-email").textContent = labContent[lang].labelEmail;
@@ -101,10 +101,10 @@
       btn.addEventListener('click', () => setLang(btn.dataset.lang));
     });
 
-    // Form submit con tracciamento GA
+    // Form submit con tracciamento GA e alert dinamico
     const form = document.getElementById('contact-form');
     form.addEventListener('submit', function(e){
-      e.preventDefault(); // blocco invio reale per test
+      e.preventDefault(); // blocco invio reale per test, rimuovere in produzione se vuoi invio automatico
 
       // Evento GA
       gtag('event', 'submit_form', {
@@ -115,7 +115,8 @@
       // Alert dinamico in base alla lingua
       alert(labContent[currentLang].alertMsg);
 
-      form.reset();
+      // Invia realmente il form a Formspree
+      form.submit();
     });
   </script>
 </body>
