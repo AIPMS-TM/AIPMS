@@ -13,8 +13,7 @@
     gtag('js', new Date());
     gtag('config', 'G-KYE302LRPP');
   </script>
-
-  <!-- CSS -->
+<!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -23,8 +22,7 @@
     <h1 id="lab-title"></h1>
 
     <!-- Form di contatto con Formspree -->
-   <form id="contact-form" action="https://formspree.io/f/mqeddaap" method="POST">
-
+    <form id="contact-form" action="https://formspree.io/f/XXXXXX" method="POST">
       <label for="name" id="label-name"></label>
       <input type="text" id="name" name="name" required>
 
@@ -45,9 +43,11 @@
     </div>
   </div>
 
-  <!-- JS per multilingua e GA form -->
+  <!-- JS per multilingua, alert, GA e validazione email -->
   <script>
-    // Contenuti multilingua per Lab
+    // ===========================
+    // Contenuti multilingua Lab
+    // ===========================
     const labContent = {
       it: {
         title: "AIPMS™ Lab",
@@ -78,9 +78,12 @@
     // Lingua corrente
     let currentLang = "it";
 
+    // ===========================
     // Funzione per cambiare lingua
+    // ===========================
     function setLang(lang){
-      currentLang = lang;
+      currentLang = lang; // aggiorna lingua corrente
+
       document.getElementById("lab-title").textContent = labContent[lang].title;
       document.getElementById("label-name").textContent = labContent[lang].labelName;
       document.getElementById("label-email").textContent = labContent[lang].labelEmail;
@@ -95,63 +98,49 @@
     }
 
     // Lingua di default
-    setLang("en");
+    setLang("it");
 
+    // ===========================
     // Listener bottoni lingua
+    // ===========================
     document.querySelectorAll('.lang button').forEach(btn => {
       btn.addEventListener('click', () => setLang(btn.dataset.lang));
     });
 
-    form.addEventListener('submit', function(e){
-  e.preventDefault(); // blocca invio reale per fare i controlli
-
-  const email = document.getElementById('email').value.trim().toLowerCase();
-
-  // Regex per validare email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-  if(!emailRegex.test(email)){
-    alert(currentLang === 'it' ? 
-      'Per favore inserisci un indirizzo email valido.' :
-      currentLang === 'en' ? 
-      'Please enter a valid email address.' :
-      'Bitte geben Sie eine gültige E-Mail-Adresse ein.'
-    );
-    return; // blocca submit
-  }
-
-  // Lista domini fittizi (usa e getta)
-  const disposableDomains = ['mailinator.com','tempmail.com','fake.com'];
-  const domain = email.split('@')[1];
-
-  if(disposableDomains.includes(domain)){
-    alert(currentLang === 'it' ? 
-      'Per favore usa un indirizzo email valido.' :
-      currentLang === 'en' ? 
-      'Please use a valid email address.' :
-      'Bitte verwenden Sie eine gültige E-Mail-Adresse.'
-    );
-    return; // blocca submit
-  }
-
-  // Evento GA
-  gtag('event', 'submit_form', {
-    event_category: 'form',
-    event_label: 'lab_contact'
-  });
-
-  // Alert dinamico multilingua
-  alert(labContent[currentLang].alertMsg);
-
-  // Invio reale a Formspree
-  form.submit();
-});
-
-
-    // Form submit con tracciamento GA e alert dinamico
+    // ===========================
+    // Form submit con validazione email
+    // ===========================
     const form = document.getElementById('contact-form');
     form.addEventListener('submit', function(e){
-      e.preventDefault(); // blocco invio reale per test, rimuovere in produzione se vuoi invio automatico
+      e.preventDefault(); // blocca invio reale per controlli
+
+      const email = document.getElementById('email').value.trim().toLowerCase();
+
+      // Regex per validare email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      if(!emailRegex.test(email)){
+        alert(currentLang === 'it' ? 
+          'Per favore inserisci un indirizzo email valido.' :
+          currentLang === 'en' ? 
+          'Please enter a valid email address.' :
+          'Bitte geben Sie eine gültige E-Mail-Adresse ein.'
+        );
+        return; // blocca submit
+      }
+
+      // Lista domini usa e getta
+      const disposableDomains = ['mailinator.com','tempmail.com','fake.com'];
+      const domain = email.split('@')[1];
+
+      if(disposableDomains.includes(domain)){
+        alert(currentLang === 'it' ? 
+          'Per favore usa un indirizzo email valido.' :
+          currentLang === 'en' ? 
+          'Please use a valid email address.' :
+          'Bitte verwenden Sie eine gültige E-Mail-Adresse.'
+        );
+        return; // blocca submit
+      }
 
       // Evento GA
       gtag('event', 'submit_form', {
@@ -159,21 +148,13 @@
         event_label: 'lab_contact'
       });
 
-      // Alert dinamico in base alla lingua
+      // Alert multilingua
       alert(labContent[currentLang].alertMsg);
 
-      // Form submit con tracciamento GA e alert dinamico a formsfree 
-    form.addEventListener('submit', function(e){
-    e.preventDefault(); // blocco temporaneo per test, in produzione puoi rimuovere se vuoi
-    gtag('event', 'submit_form', {
-        event_category: 'form',
-        event_label: 'lab_contact'
-    });
-    alert(labContent[currentLang].alertMsg);
-    form.submit();  // invio reale a Formspree
-});
-     
+      // Invio reale a Formspree
+      form.submit();
     });
   </script>
 </body>
 </html>
+ 
