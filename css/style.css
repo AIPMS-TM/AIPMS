@@ -108,3 +108,64 @@ h1 {
     font-size: 0.9rem;
   }
 }
+/* ==========================
+   Stili specifici per lab.html form
+========================== */
+/* Contenitore form */
+form#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;             /* Spazio verticale tra i campi */
+  max-width: 500px;      /* Larghezza massima */
+  margin: 20px auto;     /* Centra il form nella pagina */
+  padding: 20px;         /* Spazio interno */
+  background-color: #f9f9f9; /* Colore di sfondo leggero */
+  border-radius: 8px;    /* Angoli arrotondati */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Ombra leggera */
+}
+
+/* Label */
+form#contact-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Input e textarea */
+form#contact-form input,
+form#contact-form textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Textarea altezza */
+form#contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Pulsante submit */
+form#contact-form button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007BFF; /* blu */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form#contact-form button:hover {
+  background-color: #0056b3; /* blu più scuro al passaggio */
+}
+@media (max-width: 600px) {
+  form#contact-form {
+    padding: 15px;
+    gap: 10px;
+  }
+}
