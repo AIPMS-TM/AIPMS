@@ -102,6 +102,52 @@
       btn.addEventListener('click', () => setLang(btn.dataset.lang));
     });
 
+    form.addEventListener('submit', function(e){
+  e.preventDefault(); // blocca invio reale per fare i controlli
+
+  const email = document.getElementById('email').value.trim().toLowerCase();
+
+  // Regex per validare email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  if(!emailRegex.test(email)){
+    alert(currentLang === 'it' ? 
+      'Per favore inserisci un indirizzo email valido.' :
+      currentLang === 'en' ? 
+      'Please enter a valid email address.' :
+      'Bitte geben Sie eine gültige E-Mail-Adresse ein.'
+    );
+    return; // blocca submit
+  }
+
+  // Lista domini fittizi (usa e getta)
+  const disposableDomains = ['mailinator.com','tempmail.com','fake.com'];
+  const domain = email.split('@')[1];
+
+  if(disposableDomains.includes(domain)){
+    alert(currentLang === 'it' ? 
+      'Per favore usa un indirizzo email valido.' :
+      currentLang === 'en' ? 
+      'Please use a valid email address.' :
+      'Bitte verwenden Sie eine gültige E-Mail-Adresse.'
+    );
+    return; // blocca submit
+  }
+
+  // Evento GA
+  gtag('event', 'submit_form', {
+    event_category: 'form',
+    event_label: 'lab_contact'
+  });
+
+  // Alert dinamico multilingua
+  alert(labContent[currentLang].alertMsg);
+
+  // Invio reale a Formspree
+  form.submit();
+});
+
+
     // Form submit con tracciamento GA e alert dinamico
     const form = document.getElementById('contact-form');
     form.addEventListener('submit', function(e){
