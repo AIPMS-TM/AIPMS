@@ -37,11 +37,13 @@
 
     <!-- Selettore lingua -->
     <div class="lang">
-      <button class="active" data-lang="it">IT</button>
-      <button data-lang="en">EN</button>
-      <button data-lang="de">DE</button>
+      <button class="active" data-lang="ru">RU</button>
+      <button data-lang="ar">AR</button>
+      <button data-lang="zh">ZH</button>
     </div>
   </div>
+
+
 
   <!-- JS per multilingua, alert, GA e validazione email -->
   <script>
@@ -49,34 +51,34 @@
     // Contenuti multilingua Lab
     // ===========================
     const labContent = {
-      it: {
-        title: "AIPMS™ Lab",
-        labelName: "Nome:",
-        labelEmail: "Email:",
-        labelMessage: "Messaggio:",
-        btnSubmit: "Invia",
-        alertMsg: "Grazie! Il form è stato inviato."
-      },
-      en: {
-        title: "AIPMS™ Lab",
-        labelName: "Name:",
-        labelEmail: "Email:",
-        labelMessage: "Message:",
-        btnSubmit: "Send",
-        alertMsg: "Thank you! The form has been submitted."
-      },
-      de: {
-        title: "AIPMS™ Lab",
-        labelName: "Name:",
-        labelEmail: "Email:",
-        labelMessage: "Nachricht:",
-        btnSubmit: "Senden",
-        alertMsg: "Danke! Das Formular wurde gesendet."
-      }
-    };
+  ru: {
+    title: "AIPMS™ Lab",
+    labelName: "Имя:",
+    labelEmail: "Электронная почта:",
+    labelMessage: "Сообщение:",
+    btnSubmit: "Отправить",
+    alertMsg: "Спасибо! Форма отправлена."
+  },
+  ar: {
+    title: "مختبر AIPMS™",
+    labelName: "الاسم:",
+    labelEmail: "البريد الإلكتروني:",
+    labelMessage: "الرسالة:",
+    btnSubmit: "إرسال",
+    alertMsg: "شكرًا! تم إرسال النموذج."
+  },
+  zh: {
+    title: "AIPMS™ 实验室",
+    labelName: "姓名：",
+    labelEmail: "电子邮箱：",
+    labelMessage: "留言：",
+    btnSubmit: "提交",
+    alertMsg: "感谢！表单已发送。"
+  }
+};
 
     // Lingua corrente
-    let currentLang = "it";
+    let currentLang = "ru";
 
     // ===========================
     // Funzione per cambiare lingua
@@ -98,7 +100,7 @@
     }
 
     // Lingua di default
-    setLang("it");
+    setLang("ru");
 
     // ===========================
     // Listener bottoni lingua
@@ -117,30 +119,54 @@
       const email = document.getElementById('email').value.trim().toLowerCase();
 
       // Regex per validare email
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-      if(!emailRegex.test(email)){
-        alert(currentLang === 'it' ? 
-          'Per favore inserisci un indirizzo email valido.' :
-          currentLang === 'en' ? 
-          'Please enter a valid email address.' :
-          'Bitte geben Sie eine gültige E-Mail-Adresse ein.'
-        );
-        return; // blocca submit
-      }
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-      // Lista domini usa e getta
-      const disposableDomains = ['mailinator.com','tempmail.com','fake.com'];
-      const domain = email.split('@')[1];
+if (!emailRegex.test(email)) {
 
-      if(disposableDomains.includes(domain)){
-        alert(currentLang === 'it' ? 
-          'Per favore usa un indirizzo email valido.' :
-          currentLang === 'en' ? 
-          'Please use a valid email address.' :
-          'Bitte verwenden Sie eine gültige E-Mail-Adresse.'
-        );
-        return; // blocca submit
-      }
+  alert(
+    currentLang === 'ru' ?
+      'Пожалуйста, введите корректный адрес электронной почты.' :
+    currentLang === 'ar' ?
+      'يرجى إدخال عنوان بريد إلكتروني صالح.' :
+    currentLang === 'zh' ?
+      '请输入有效的电子邮箱地址。' :
+      'Invalid email address.'
+  );
+
+  return; // blocca submit
+}
+
+     // ru: {
+//  ...
+//  invalidEmail: "Пожалуйста, введите корректный адрес электронной почты."
+//},
+//ar: {
+//  ...
+//  invalidEmail: "يرجى إدخال عنوان بريد إلكتروني صالح."
+//},
+ //zh: {
+  //...
+ // invalidEmail: "请输入有效的电子邮箱地址。"
+//}
+
+  // Lista domini usa e getta
+const disposableDomains = ['mailinator.com','tempmail.com','fake.com'];
+const domain = email.split('@')[1];
+
+if (disposableDomains.includes(domain)) {
+
+  alert(
+    currentLang === 'ru' ?
+      'Пожалуйста, используйте действительный адрес электронной почты.' :
+    currentLang === 'ar' ?
+      'يرجى استخدام عنوان بريد إلكتروني صالح.' :
+    currentLang === 'zh' ?
+      '请使用有效的电子邮箱地址。' :
+      'Invalid email address.'
+  );
+
+  return; // blocca submit
+}
 
       // Evento GA
       gtag('event', 'submit_form', {
